@@ -1,1 +1,1 @@
-AutoSpiceVersion:1.1
+AutoSpiceVersion:1.0
