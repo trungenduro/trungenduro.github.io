@@ -1,2 +1,2 @@
 AutoSpiceVersion:1.1:test.zip
-AutoSpiceVersion:1.2:test.zip:comment
+AutoSpiceVersion:1.0:test.zip:comment
