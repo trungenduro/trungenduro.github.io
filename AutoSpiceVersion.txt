@@ -1,2 +1,3 @@
 AutoSpiceVersion:1.1:test.zip
 AutoSpiceVersion:1.1:test.zip:comment
+AutoSpiceVersion:1.2:test.zip:dimensionmodify
