@@ -5,4 +5,4 @@ AutoSpiceVersion:1.3:Auto_Piece13.zip:comments_2023_12
 AutoSpiceVersion:1.4:Auto_Piece14.zip:comments_2023_12
 AutoSpiceVersion:1.5:Auto_Piece15.zip:comments_2023_12_27
 AutoSpiceVersion:1.6:Auto_Piece16.zip:comments_2024_04_08
-AutoSpiceVersion:1.6:Auto_Piece17.zip:2024_04_17 図面番_部品符号を帳票追記
+AutoSpiceVersion:1.7:Auto_Piece17.zip:2024_04_17 図面番_部品符号を帳票追記
