@@ -12,6 +12,9 @@ HttpRequest http;
 input string Partner="";
 input bool CopyTrade=false;
 input bool CopyClose=false;
+input double MaxLot=0.26;
+input int H_from=9;
+input int H_to=18;
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -23,11 +26,22 @@ int OnInit()
    //ExtDialog.Run();
    EventSetTimer(50);
    Print("Account=",IntegerToString(AccountInfoInteger(ACCOUNT_LOGIN)));
-;
+
+Print("http.myname=",http.MyName);
     Print("New EA 2024 06 13");  
+    
+      
+   http.CopyClose = CopyClose;
+   http.H_from = H_from;
+   http.H_to=H_to;
+   http.MaxLot = MaxLot;
+  
+    
   http.MyPartner = Partner;
   http.UpdateMyPosition();
+  http.CopyClose = CopyClose;
    http.UpdateAutoMode();
+   
   if(CopyTrade || CopyClose) http.UpdateParnerPos();
   
    http.SendBars();
@@ -58,9 +72,10 @@ void OnTick()
   {
 //---
      http.UpdateMyPosition();
+    if(CopyTrade || CopyClose) http.UpdateParnerPos();
     if(CopyTrade)
     {
-        http.UpdateParnerPos();
+      
         http.UpdateAutoMode();
         http.CopyFromParner();
        // http.UpdateMyPosition();
