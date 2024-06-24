@@ -24,13 +24,13 @@ int OnInit()
      // return(INIT_FAILED);
 //--- run application
    //ExtDialog.Run();
-   EventSetTimer(50);
+   EventSetTimer(500);
    Print("Account=",IntegerToString(AccountInfoInteger(ACCOUNT_LOGIN)));
 
 Print("http.myname=",http.MyName);
     Print("New EA 2024 06 13");  
-    
       
+     
    http.CopyClose = CopyClose;
    http.H_from = H_from;
    http.H_to=H_to;
