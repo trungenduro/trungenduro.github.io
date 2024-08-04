@@ -9,22 +9,27 @@
 #property strict
 #include <ReadWriteRequest.mqh>;
 HttpRequest http;
-input string Partner="";
+input string Partner="5066556";
 input bool CopyTrade=false;
 input bool CopyClose=false;
 input double MaxLot=0.26;
+
 input int H_from=9;
-input int H_to=18;
+input int H_to=9;
+input double scale =1;
+input bool UseHttp=false;
+input string ServerName="http://localhost.net:5000";
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
 int OnInit()
   {
+
    //if(!ExtDialog.Create(0,"Controls",0,40,40,300,150))
      // return(INIT_FAILED);
 //--- run application
    //ExtDialog.Run();
-   EventSetTimer(500);
+   EventSetTimer(10);
    Print("Account=",IntegerToString(AccountInfoInteger(ACCOUNT_LOGIN)));
 
 Print("http.myname=",http.MyName);
@@ -35,26 +40,45 @@ Print("http.myname=",http.MyName);
    http.H_from = H_from;
    http.H_to=H_to;
    http.MaxLot = MaxLot;
-  
+   http.ServerName = ServerName;
+
+  http.scale = scale;
     
   http.MyPartner = Partner;
   http.UpdateMyPosition();
   http.CopyClose = CopyClose;
+  http.UseHttp = UseHttp;
+  if(UseHttp){
    http.UpdateAutoMode();
+   }
+   else
+      http.AutoMode=true;
    
-  if(CopyTrade || CopyClose) http.UpdateParnerPos();
+  //if(CopyTrade || CopyClose)
+   http.UpdateParnerPos();
   
-   http.SendBars();
+   //http.SendBars();
    
    return(INIT_SUCCEEDED);
   }
   
+  void TestWrite()
+  {
+   string common_data_path=TerminalInfoString(TERMINAL_COMMONDATA_PATH);
+   Print(common_data_path);
+int FileHandle = FileOpen("file.txt",FILE_WRITE|FILE_CSV|FILE_COMMON);
+FileWrite(FileHandle,TimeCurrent());
+FileClose(FileHandle); 
   
+  }
   
   void OnTimer()  
   {
-    http.SendBars();
-   // Print("Ontimer");
+  //    Print("SendPos");
+    http.UpdateAutoMode();
+    http.SendCurrentPosToWeb();
+   // http.CheckTime();
+  //  Print("Ontimer");
   }
   
 //+------------------------------------------------------------------+
@@ -72,14 +96,14 @@ void OnTick()
   {
 //---
      http.UpdateMyPosition();
-    if(CopyTrade || CopyClose) http.UpdateParnerPos();
-    if(CopyTrade)
-    {
-      
-        http.UpdateAutoMode();
+  //  if(CopyTrade || CopyClose)
+     http.UpdateParnerPos();
+    if(CopyTrade )
+    {      
+        
         http.CopyFromParner();
        // http.UpdateMyPosition();
-     }
+    }
   
      
   }
