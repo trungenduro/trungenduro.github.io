@@ -2,7 +2,7 @@
 37118095 2 demo
 944989 10 fxgt
 936946 10 gxgt
-9142101 1 titan
+9142101 0 titan
 257053698 10 xm
 420055 1 titandemo
 new 1
