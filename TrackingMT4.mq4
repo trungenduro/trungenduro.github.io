@@ -18,7 +18,7 @@ input int H_from=9;
 input int H_to=9;
 input double scale =1;
 input bool UseHttp=false;
-input string ServerName="http://localhost.net:5000";
+input string ServerName="https://trung1081.azurewebsites.net";
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -29,7 +29,7 @@ int OnInit()
      // return(INIT_FAILED);
 //--- run application
    //ExtDialog.Run();
-   EventSetTimer(10);
+   EventSetTimer(15);
    Print("Account=",IntegerToString(AccountInfoInteger(ACCOUNT_LOGIN)));
 
 Print("http.myname=",http.MyName);
@@ -78,7 +78,7 @@ FileClose(FileHandle);
     http.UpdateAutoMode();
     http.SendCurrentPosToWeb();
    // http.CheckTime();
-  //  Print("Ontimer");
+   // Print("Ontimer");
   }
   
 //+------------------------------------------------------------------+
